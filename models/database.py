@@ -12,8 +12,6 @@ from config import SECRET_KEY
 from utils.json_hack import Serializable
 
 db = SQLAlchemy()
-db.create_all()
-
 
 def now():
     return datetime.datetime.now()
