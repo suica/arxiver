@@ -16,12 +16,9 @@ If you don't, you can use your own virtual environment instead, it does not matt
 
 Now you should install all dependencies, use
 
-`cd app`
-
 `pip install -r requirements.txt`
 
 ### Run Main Server
-
 
 Then go to the project folder.
 
@@ -30,7 +27,6 @@ Then go to the project folder.
 to start the server.
 
 Now, arXivER is running on `http://0.0.0.0:5000`.
-
 
 ### Run Celery Worker
 
