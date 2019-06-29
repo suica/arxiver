@@ -1,0 +1,141 @@
+<script type="text/x-template" id="signup_component_template">
+    <form @submit.prevent="handle_submit">
+        <div class="text-center">
+            <h3>Sign Up to arXivER</h3>
+        </div>
+        <div class="alert alert-warning" role="alert" v-show="show_alert&&!success">
+            <span v-html="message">
+            </span>
+            Please try again.
+        </div>
+        <div class="alert alert-success" role="alert" v-show="show_alert&&success">
+            Sign up successfully! Click here to <a href="/signin">sign in</a>.
+        </div>
+        <fieldset class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" required tabindex="1" v-model="username" id="username"
+                   :class="is_username_ok(username)?'is-valid' : 'is-invalid'"
+                   @focus="show_input_feedback=true"
+                   autocomplete="username"
+            >
+            <div class="valid-feedback" v-if="username">
+                Looks good!
+            </div>
+            <div class="invalid-feedback" v-else>
+                Username should have length of 1 to 20.
+            </div>
+        </fieldset>
+        <fieldset class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" required tabindex="2" v-model="password" id="password" autocomplete="new-password"
+                   :class="is_password_ok(password)?'is-valid':'is-invalid'"
+                   @focus="show_input_feedback=true"
+            >
+            <div class="valid-feedback" v-show="is_password_ok(password)">
+                Looks good!
+            </div>
+            <div class="invalid-feedback" v-show="!is_password_ok(password)">
+                Password should have length of 6 to 20, and should contain at least 1 uppercase letter, 1 lowercase
+                letter, 1 number.
+            </div>
+        </fieldset>
+        <fieldset class="form-group">
+            <label for="repeated_password">Repeat Password</label>
+            <input type="password" class="form-control"
+                   :class="repeated_password_ok?'is-valid':'is-invalid'" required
+                   tabindex="3"
+                   v-model="repeated_password"
+                   id="repeated_password"
+                   @focus="show_input_feedback=true"
+                   autocomplete="new-password"
+            >
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+            <div class="invalid-feedback" v-show="!repeated_password_ok">
+                Please repeat password correctly.
+            </div>
+        </fieldset>
+        <fieldset class="form-group">
+            <label for="email">Email</label>
+            <input type="text" class="form-control"
+                   required
+                   tabindex="4"
+                   id="email"
+                   v-model="email"
+                   @focus="show_input_feedback=true"
+            >
+        </fieldset>
+        <div class="mt-4">
+            <button type="submit" class="btn btn-block btn-success" tabindex="5">Create an account</button>
+        </div>
+        <div class="container">
+            <div class="row mt-3">
+                <a href="/signin">Already have an account?</a>
+            </div>
+        </div>
+    </form>
+</script>
+<script>
+    Vue.component('signup', {
+        template: '#signup_component_template',
+        data() {
+            return {
+                username: '',
+                password: '',
+                repeated_password: '',
+                email: '',
+                show_alert: false,
+                show_input_feedback: false,
+                success: false,
+                message: ''
+            }
+        },
+        methods: {
+            handle_submit() {
+                this.show_alert = false;
+                if (this.user_info && this.repeated_password_ok && this.is_username_ok(this.username) && this.is_password_ok(this.password)) {
+                    api.users.post(this.user_info).then((res) => {
+                        localStorage.token = res.data.token;
+                        this.show_alert = true;
+                        this.success = true;
+                    }).catch((err) => {
+                        this.show_alert = true;
+                        this.success = false;
+                        if (err.response) {
+                            this.message = err.response.data.error_msg;
+                        } else {
+                            this.message = 'May be something wrong with your input or server.'
+                        }
+                    })
+                } else {
+                    this.show_alert = true;
+                    this.success = false;
+                    this.message = 'Some issues in your input.';
+                }
+            },
+        },
+        computed: {
+            user_info() {
+                return {
+                    username: this.username,
+                    password: this.password,
+                    email: this.email,
+                }
+            },
+            repeated_password_ok() {
+                return this.password == this.repeated_password && this.password.length > 0;
+            },
+        },
+        watch: {
+            show_input_feedback(new_val) {
+                if (new_val) {
+                    $('div.invalid-feedback').fadeIn();
+                }
+            }
+        },
+        mounted() {
+            $('div.invalid-feedback').hide();
+        }
+    });
+</script>

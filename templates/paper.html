@@ -1,0 +1,199 @@
+{% extends "bare.html" %}
+{% block content %}
+    <div class="container">
+        <div class="row mt-5 mx-1" id="paper_component" v-cloak="">
+            <div class="col-md-8">
+                <div class="row">
+                    <h3>
+                        {{ paper.title }}
+                    </h3>
+                </div>
+                <div class="row">
+                    <h5>
+                        <a :href="name|author_url" v-for="{name},k in paper.authors">
+                            <span v-if="k">,</span>
+                            <span>
+                                {{ name }}
+                            </span>
+                        </a>
+                    </h5>
+                </div>
+                <div class="row mt-2">
+                    <span class="text-muted">
+                        (Submitted on {{ paper.published | format_time }}) (
+                        <a :href="paper.id | arxiv_raw_id | arxiv_origin">arXiv origin</a>)
+                    </span>
+                </div>
+                <div class="row mt-3 pl-3">
+                    {{ paper.summary }}
+                </div>
+                <div class="row mt-3">
+                    <table class="table table-striped table-borderless">
+                        <tbody>
+                        <tr v-for="{key,value} of other_info" v-if="value">
+                            <td>{{ key }}</td>
+                            <td>{{ value }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>tags</b></td>
+                            <td>
+                                <a class="badge badge-info mr-1" href="#" v-for="{tag_name} of paper.tags">
+                                    {{ tag_name }}
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card ml-md-3">
+                    <div class="card-header">
+                        Options
+                    </div>
+                    <div class="card-body">
+                        <div v-if="sub_info.paper">
+                            <h5 class="card-title">
+                                Already In Your Queue
+                            </h5>
+                            <button class="btn btn-outline-danger btn-block" @click="handle_delete_paper">
+                                Remove
+                            </button>
+                            <button class="btn btn-outline-info btn-block" @click="handle_toggle_finished">
+                                <span v-if="sub_info.finished">
+                                    Mark as unread
+                                </span>
+                                <span v-else>
+                                    Mark as read
+                                </span>
+                            </button>
+                        </div>
+                        <div v-else>
+                            <h5 class="card-title">
+                                Not In Your Queue
+                            </h5>
+                            <button class="btn btn-outline-success btn-block" @click="handle_add_paper">
+                                Add
+                            </button>
+                        </div>
+
+                        <hr>
+                        <h5 class="card-title">Download PDF</h5>
+                        <a :href="paper_id | arxiv_raw_id | arxiv_pdf"
+                           class="btn btn-block btn-outline-primary">arXiv</a>
+                        <a :href="paper_id | arxiv_raw_id | arxiv_pdf('cn')" role="button"
+                           class="btn btn-block btn-outline-secondary">
+                            arXiv China mirror</a>
+                        <div v-if="false">
+                            <hr>
+                            <h5 class="card-title">Browse Related</h5>
+                            <div class="row p-1">
+                                <table class="table table-borderless">
+                                    <tbody>
+                                    <tr v-for="{tag_name} of paper.tags">
+                                        <td>
+                                            <a href="">
+                                                {{ tag_name }}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: '#paper_component',
+            data() {
+                return {
+                    ha: 2333,
+                    paper_id: '',
+                    paper: {},
+                    sub_info: {},
+                }
+            },
+            methods: {
+                handle_add_paper() {
+                    api.users['0'].papers.post({
+                        paper_id: this.paper_id
+                    }).then((res) => {
+                        let {data} = res;
+                        this.sub_info = data || {};
+                    }).catch((err) => {
+                        console.log(err);
+                        {#if (err.response.status == 401) {#}
+                            window.location = '/signin';
+                        //}
+                    });
+                },
+                handle_delete_paper() {
+                    api.users['0'].papers[this.paper_id].delete().then((res) => {
+                        this.sub_info = {};
+                    });
+                },
+                handle_toggle_finished() {
+                    let {finished} = this.sub_info;
+                    finished = (!finished);
+                    api.users['0'].papers[this.paper_id].put({
+                        finished
+                    }).then((res) => {
+                        console.log(res)
+                        this.sub_info = res.data || {};
+                    })
+                }
+            },
+            computed: {
+                other_info() {
+                    let keys = ['arxiv_comment', 'journal_reference', 'doi'];
+                    let kv_array = keys.map((key) => {
+                        return {key, value: this.paper[key]};
+                    });
+                    return kv_array
+                },
+            },
+            filters: {
+                author_url(author_name = '') {
+                    return `https://arxiv.org/search/cs?query=${author_name}&searchtype=author`;
+                },
+                arxiv_pdf(paper_id, sub_domain = '') {
+                    if (sub_domain == 'cn') {
+                        sub_domain += '.';
+                    }
+                    let url = `http://${sub_domain}arxiv.org/pdf/${paper_id}`;
+                    return url;
+                },
+                format_time(time_string = '') {
+                    let formatted = time_string.split('T').join(' ');
+                    return `${formatted}`;
+                }
+            },
+            mounted() {
+                let search = window.location.search;
+                if (search.length > 5) {
+                    let id = search.substr(4);
+                    this.paper_id = id;
+
+                    api.papers[id].get().then((res) => {
+                        this.paper = res.data;
+                    }).catch((err) => {
+                        // todo: jump to 404
+                    });
+                    api.users['0'].papers[id].get().then((res) => {
+                        let {data} = res;
+                        this.sub_info = data || {};
+                        {#console.log(data)#}
+                    }).catch((err) => {
+                        console.log(err)
+                    })
+                } else {
+                    // todo: jump to 404
+                }
+            }
+        });
+    </script>
+{% endblock %}

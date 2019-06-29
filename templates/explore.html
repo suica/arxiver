@@ -1,0 +1,141 @@
+{% extends "bare.html" %}
+{% block content %}
+    <div class="container" id="explore_papers">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="my-3">
+                    <h3>Explore Papers</h3>
+                </div>
+                <div>
+                    <paperlist :query="query" :data="query_result" :change_page="change_page">
+                        explore
+                    </paperlist>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="my-3">
+                    <h3>Options</h3>
+                </div>
+                <div>
+                    <div class="card card-body">
+                        <fieldset class="form-group">
+                            <legend>Keyword</legend>
+                            <div class="form-row mb-3">
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" placeholder="keyword for some column"
+                                           aria-label="Example text with button addon" aria-describedby="button-addon1"
+                                           v-model.trim="keyword"
+                                    >
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="input-group-append">
+                                        <select class="custom-select" v-model="keyword_column">
+                                            <option v-for="name of all_columns" :value="name">
+                                                {{ name }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <legend>Tags</legend>
+                            <div class="row pl-1">
+                                <div class="col-9">
+                                    <div class="row px-3">
+                                        <div class="form-check col-6" v-for="tag_name in all_tags">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox"
+                                                       :value="tag_name" v-model="tags">
+                                                {{ tag_name }}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="row px-3">
+                                        <div class="form-check col-6">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox"
+                                                       value="all"
+                                                       v-model="tags.length == 0 || tags.length == all_tags.length">
+                                                All
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                        </fieldset>
+                        <a href="/explore" role="button" class="btn btn-block btn-outline-secondary">Reset filter</a>
+                        <button type="button" class="btn btn-block btn-outline-info" @click="apply_filter">Apply
+                            filter
+                        </button>
+                        {#                        {{ query_result }}#}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include "components/paperlist_component.html" %}
+    <script>
+        new Vue({
+            el: '#explore_papers',
+            data() {
+                return {
+                    page: 1,
+                    per_page: 10,
+                    tags: [],
+                    all_tags: [],
+                    all_columns: ["id", "title", "summary", "arxiv_comment", "journal_reference", "doi"],
+                    keyword: '',
+                    keyword_column: 'title',
+                    test: {},
+                    query_result: null,
+                    state_container: 'explore_filter_state',
+                }
+            },
+            computed: {
+                has_token() {
+                    if (localStorage.token) {
+                        if (localStorage.token.length > 1) {
+                            return true;
+                        }
+                    }
+                },
+                condition() {
+                    return {
+                        page: this.page,
+                        per_page: this.per_page,
+                        tags: this.tags.join(','),
+                        keyword: this.keyword,
+                        keyword_column: this.keyword_column,
+                    }
+                },
+            },
+            methods: {
+                query() {
+                    api.papers.get({}, {...this.condition}).then((res) => {
+                        this.query_result = res.data;
+                        {#console.log(this.query_result)#}
+                    });
+                },
+                apply_filter() {
+                    this.page = 1;
+                    this.query();
+                },
+                change_page(pg) {
+                    this.page = pg;
+                    this.query();
+                }
+            },
+            created() {
+                this.query();
+                api.tags.get().then((res) => {
+                    return res.data.map(({name}) => name);
+                }).then((res) => {
+                    this.all_tags = res;
+                });
+            }
+        });
+    </script>
+{% endblock %}

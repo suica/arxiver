@@ -1,0 +1,170 @@
+%++++++++++++++++++++++++++++++++++++++++
+% Don't modify this section unless you know what you're doing!
+\documentclass[letterpaper,12pt]{article}
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\usepackage{enumitem}
+%\usepackage{tabularx} % extra features for tabular environment
+\usepackage{amsmath}  % improve math presentation
+\usepackage{graphicx} % takes care of graphic including machinery
+\usepackage[margin=1in,letterpaper]{geometry} % decreases margins
+\usepackage{cite} % takes care of citations
+\usepackage{hyperref} % adds hyper links inside the generated pdf file
+\hypersetup{
+	colorlinks=true,       % false: boxed links; true: colored links
+	linkcolor=blue,        % color of internal links
+	citecolor=blue,        % color of links to bibliography
+	filecolor=magenta,     % color of file links
+	urlcolor=blue
+}
+%++++++++++++++++++++++++++++++++++++++++
+
+
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+
+\usepackage{listings}
+\lstset{language=python,frame=ltBR,breaklines=true,showlines=true,showspaces=false,postbreak=\mbox{{$\hookrightarrow$}\space},basicstyle=\ttfamily,escapeinside={(*}{*)}}
+
+\begin{document}
+
+	\title{\textbf{arXivER: a Flask-based Paper Reading Assistant}\\{\small Originally a coursework report}}
+	\author{suicca}
+	\date{17/12/2018\footnote{Last updated: 29/06/2019}}
+	\maketitle
+
+	\section{Introduction}
+    arXivER is a paper reading assistant web application, which is designed to play the role of an assistant when using arXiv\cite{arXiv} (pronounced as ``archive''), which is a paper preprint site. arXiv can be regarded as a rich store of papers submitted from various disciplines, including mathematics, computer science, economics and physics.
+    
+	The purpose of building such a paper reading assistant system is simple: managing the papers whether they have been read or not can be a quite boring labour, for users could have a lots of papers to read. As a attemptive solution, arXivER is designed and implemented.
+    
+    arXivER allows user to register, login, then explore papers in the paper library and add some to their own paper queue to read. Papers which have been read could be marked as ``finished''(or ``read''). Users also can search in their paper queue and the paper library, by customisable filter conditions.
+    
+    One paper have some tags, indicating the discipline(s) which it belongs to. It also has some authors. User of arXivER could chose papers and add them to their paper queue, which is a listing of papers waiting to be read.
+     
+    Common users have a role of READER. For managers (referred as MASTER) and super manager (referred as GRANDMASTER), they can manage the users. For example, MASTER only can edit the user email and view system log, but GRANDMASTER can additionally edit users' username and change the role of others.
+    
+    One of the most interesting functionalities is that it supports to import papers from arXiv by giving paper id or absolute paper address.
+    
+    \section{Overview}
+    arXivER does not take a typical 3-tiered architecture likes other \textbf{Flask} applications.
+    
+    arXivER is designed to make some attempts in discoupling front-end (web page) and back-end (server): it adopts RESTful APIs in back-end, \textbf{Jinja2} as middleware, \textbf{Vue.js} and \textbf{jQuery} and \textbf{Bootstrap} as front-end.
+    
+    
+    \subsection{Front-end}
+    The front-end adopts UI framework \textbf{Bootstrap 4}, JavaScript framework \textbf{Vue.js} and \textbf{jQuery}. It allows us to have a better control on the experience of front-end. The front-end retrieves data by using RESTful APIs from back-end.
+    
+    \subsection{Middleware}
+    To realize some reusing of front-end code, \textbf{Jinja2} and vanilla \textbf{Flask} is used as middleware. In generally, navigation bar is needed in every page, so it is extracted as a single html file to be included by other html files. In the architecture of arXivER, middleware only output static page and do some routing, any dynamic data retrieving is performed in the front-end. Besides, 
+    
+    \subsection{Back-end}
+    The back-end of arXivER uses a light-weighted python web framework \textbf{Flask}.
+    The back-end also follows RESTful style.
+    The architecture of modern web services usually reveals the idea of REST (Representational State Transfer), which refers to a set of constraints and principles, in their http APIs.
+    When we say a set of APIs is ``RESTful'', we mainly means that the APIs are grouped by ``resource'', which usually corresponds to a database table or entity, and the interaction between client and servers should be stateless: for every request and response, they should provided everything needed by each other. The merits are obvious: it is usually based on http, so RESTful APIs can be used by programming languages and platforms as long as they have http support; it is stateless, so the test of RESTful APIs it relatively simple and practical; it provides a good principle to perform divisions of APIs, code, and modules, so the architecture of the web services could be easy to understand. These merits explain why RESTful style is chosen.
+    
+    Back-end also contains a database with main table of \texttt{Paper}, \texttt{User}, \texttt{Author}, \texttt{Tags}, \texttt{Role}, other minor tables are omitted here.
+    
+	\section{Highlights}
+    
+    Based on specification, the highlights of this system are listed as below.
+    
+    \begin{enumerate}[label=\alph*)]
+        \item Web forms.\label{web_forms} All forms are processed \textit{without} any back-end form plug-in, such as \textbf{Flask-WTF}.
+            \begin{itemize}
+                \item Different forms are provided to collect user input, then sent to server.  Types of fields are considered and decided based on the intended content, for example, \texttt{<select>} tags and \texttt{<input type="checkbox">} tags are used to collect options from a given set, and other types of \texttt{<input>} tags are used to collect raw text input. 
+                
+                \item For most \footnote{Email is not designed as a necessary field in this system, hence there is no validation performed on it.} input fields, data will be validated in the server-side as well as client-end, and informative feedbacks are given if there is any issue. Take sign up form for example: when user is filling the form, if password is of a low strength, the input box will have a red border until the password is good enough, and then the border will turn to green to suggest the front-end validation success. If there is any server-side exception, message and corresponding instructions will be presented to users in the form. 
+            \end{itemize}
+            
+        \item Database. \textbf{Flask-SQLAlchemy} is used to manage the \textbf{SQLite} database.
+            \begin{itemize}
+                \item As stated in \ref{web_forms}, appropriate field is used in the front-end. For database in the back-end, corresponding types of columns (fields) are chosen. With potential Unicode username considered, in \texttt{User} table, the \texttt{User.username} column is designed to be \texttt{Text} type instead of \texttt{String} type of a roughly presumed length. In \texttt{Paper} table, \texttt{Paper.title} title and \texttt{Paper.summary} column are set as also \texttt{TEXT} with regard to the non-deterministic length of the content. For primary keys in most table, \texttt{Integer} type with auto-increment are used to achieve better querying performance.
+                
+                \item The relationships between \texttt{Paper} and \texttt{Tag}, \texttt{User} and \texttt{Paper} are many-to-many relationships: one paper could have many tags, one tag could belong to many papers; one user could have many papers in his queue, and one paper be queues of many users. Different association tables are used to mange these many-to-many relationships.
+                
+                \item For any manipulation (add, delete, alter) on the database, data will be validated and related operations will be committed as a single transaction to guarantee the data consistency.
+                
+                \item When multiple entries are queried, proper pagination will be performed. If keywords on some searchable columns (such \texttt{Paper.title} and \texttt{Paper.tags}) are specified, matched entries will be returned.
+            \end{itemize}
+        \item Authentication. \textbf{Flask-httpauth} is used to realize long-term token authentication for RESTful APIs, and cookie is used to determine whether a user has authority to see a certain page. They are combined to make authentication easier.
+            \begin{itemize}
+                \item For page authentication, there are some pages that cannot be visible by guest. \footnote{Unregistered or unlogged in user.} After users logged in, a cookie will be added to indicate that they are logged in. Every time user visit a page, the back-end router will examine the cookie, and decided whether he has the authority to see that page. For example, \texttt{/queue} page can not be seen by guest until they has logged in, otherwise he will be redirected to \texttt{/signin}. If the user logs out or cookie expires, it will be deleted.
+                \item For RESTful APIs authentication, token, which is a encrypted string of user id, is used. Every time a user successfully logs in, we send him a token with certain expire time (such as 48 hours). The token should be sent in the http headers when to access RESTful APIs. Every time an API is accessed, authority of the user will be queried from database and reject requests from users with not enough authority.
+                When the user logs out or token becomes invalid, it will be deleted.
+            \end{itemize}
+        \item Appropriate styling.\label{styling} \textbf{Bootstrap 4} is used in the front-end to beautify the page. 
+            \begin{itemize}
+                \item \textbf{Bootstrap} provides many responsive utilities, hence users of arXivER will feel natural on both the desktop and tablet.
+                
+                \item User experience is designed to be consistent. Similar functionalities across different pages are placed on the similar position and consistently grouped. With consistent layout and appropriate labels, the functionalities of arXivER is intuitively easy to find and use.
+                
+                \item Some consideration is applied to the accessibility of the website. For most buttons, ``outlined'' style is applied. When user move the cursor on the buttons, an animation will be shown and suggest that it is a button and interactable.
+                 The font colour is in high contrast to the background and easy to see.
+            \end{itemize}
+        \item Unit testing. A Python module named \textbf{unittest} is introduced to do unit test on the RESTful APIs and page routing.
+            \begin{itemize}
+                \item The tests can designed to cover all boundary cases.
+            \end{itemize}
+        \item Logging. A Python module \textbf{logging} is used to do logging, but most logging are done by Python's built-in mechanisms. 
+            \begin{itemize}
+                \item Logs are stored in database and only could be seen by MASTER and GRANDMASTER. 
+                
+                \item Any server-side access as well as exceptions raise from authenticated APIs will be captured and logged. A typical message contains time, ip to call the API, which http method, API name, result, message and Python traceback (if any exception raises).
+            \end{itemize}
+        \item Features.
+            \begin{itemize}
+                \item \textbf{Bootstrap and jQuery}. The use of boostrap is stated in \ref{styling}, and jQuery is used to manipulate DOM and to mount Vue node. They are closely related to the consistence and fluency of user experience.
+                \item \textbf{Local storage}. Token is stored in local storage of browser. It can be simple way to realize long-term authentication. It save user time to log in every they use arXivER.
+                \item \textbf{Flask-RESTful}. RESTful APIs are built with the help of flask-RESTful. 
+                \item \textbf{Celery}. arXivER supports to import a paper from arXiv by paper id or paper address. This functionality is implemented by utilising Celery. This feature enables users from different disciplines to import what they really need instead of being limited by few disciplines such as computer science or mathematics.
+            \end{itemize}
+    \end{enumerate}
+    
+    
+	
+    \section{Access to arXivER}
+    
+    
+    arXivER has been deployed on \url{https://arxiver.suicca.xyz}, from 17/12/2018 to 17/01/2019 \footnote{When you see this document, this URL is obviously no longer available.}.
+    One GRANDMASTER account is provided here.
+    \begin{itemize}
+        \item Username: \texttt{root}
+        \item Password: \texttt{Password1}
+    \end{itemize}
+    
+    \section{Discussion}
+    
+    \subsection{Evaluation on Implementation}
+    
+    The overall architecture and implementation of arXivER is generally of high standard, and it will be easy to scale and add more functionalities.
+    
+    There are some compromises in selecting functionalities to implement. For example, fuzzy search and inverted index of papers are not implemented.
+    
+    But the front-end implementation could be more elegant and concise. In spite of some attempts in addressing this issue, there are still some useful components and code could be extracted for reusing and modularisation.
+    
+    \subsection{Security Issues}
+    Vanilla http protocol transfers data without any encryption, which can be exploited by attackers. To reduce this impact, the https protocol is used. It keeps the data transferring encrypted and much safer than before.
+    Thanks to Let's encrypt to provide convenient free SSL certificate.
+    
+    Weak password, especially GRANDMASTER's password, could also be a big problem. To reduce the impact, constraints of password - length should be 6 to 20, contains at least 1 lower case letter, 1 upper case letter and 1 digit - are applied.
+    
+    Some APIs (such as \url{https://arxiver.suicca.xyz/api/v1/papers}) are designed to not require a valid token, which could lead to abuse. But we would rather regard it as public APIs of arXivER.
+    
+    \section{Conclusion}
+
+    ``The final implementation of this application fully satisfies the coursework specifications. Besides, some advanced features are added. By finishing this, the understanding of the common architecture of application and the testing and debugging techniques to improve the software quality is deepened''\footnote{Self-citation omitted for privacy.}.
+
+    ``In this future, experience learnt from this project will be practised. It is believed that personal skills will be improved by this process'' \footnote{Self-citation omitted for privacy.}.
+
+
+	\begin{thebibliography}{99}
+        
+        \bibitem{arXiv}
+        		Cornell University Library. (2018). \textit{arXiv}, available at
+        		\url{https://arxiv.org/}
+
+	\end{thebibliography}
+
+
+\end{document}

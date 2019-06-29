@@ -1,0 +1,43 @@
+.tab-content {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 10px;
+}
+
+.nav-tabs {
+    margin-bottom: 0;
+}
+
+@media screen and (min-width: 700px) {
+    .back {
+        background-image: url("../img/autumn-clouds-cold-691569.jpg");
+        /*background-image: url("../img/architecture-bridge-fog-1141853.jpg");*/
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+    }
+
+    .white {
+        /*padding: 1.5rem !important;*/
+        padding-left: 1.5rem;
+        padding-top: 1rem;
+        padding-bottom: 1.5rem;
+        background-color: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(0, 0, 0, 0.125);
+        border-radius: .25rem;
+    }
+}
+
+[v-cloak] {
+    display: none !important;
+}
+
+body{
+    height: 100vh;
+}
+
+.table-manage{
+    min-width: 700px;
+}

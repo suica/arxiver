@@ -1,0 +1,148 @@
+{% extends "bare.html" %}
+{% block content %}
+    <div>
+        <div class="jumbotron jumbotron-fluid d-flex justify-content-center back">
+            <div class="container row">
+                <div class="col-md-7">
+                    <div>
+                        <div class="display-3 font-weight-bold">arXivER</div>
+                        <div class="display-4 font-weight-bold"> your <span class="font-italic">arXiv</span>,
+                            mastered.
+                        </div>
+                    </div>
+                    <div class="font-weight-bold white mt-3 mr-5">
+                        What is arXivER?
+                        <br>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid aut beatae, blanditiis
+                        esse est iusto minima nesciunt nostrum optio perferendis, praesentium quia quibusdam
+                        quos
+                        ratione sequi sint voluptatum? Consequuntur, veritatis?
+                    </div>
+                </div>
+                <div class="col-md-5 mt-3 d-none d-sm-block">
+                    <div class="card card-body">
+                        <div class="vue_component">
+                            <signup></signup>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container p-3 mb-5">
+            <div class="jumbotron">
+                <h5>
+                    Random paper:
+                </h5>
+                <div class="row justify-content-center">
+                    <div id="random_paper_view">
+                        <div class="container-fluid" v-if="query_result">
+                            <h3>
+                                {{ query_result.title }}
+                            </h3>
+                            <h5>
+                            <span v-for="(author,i) of query_result.authors">
+                                <span v-if="i">
+                                    ,
+                                </span>
+                                {{ author.name }}
+                            </span>
+                            </h5>
+                            Interested in <a :href="query_result.id | paper_url">{{ query_result.id }}</a>? Add it to
+                            your <a href="/queue">paper queue</a>!
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-lg-5">
+                <div class="col-md-4">
+                    <h3>
+                        Find papers, add to your queue. Read them.
+                    </h3>
+                </div>
+                <div class="col-md-8">
+                    <h5>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi ex expedita ipsum magni
+                        quibusdam vel? A at consequatur earum, eligendi, error facere laborum, molestiae nam similique
+                        soluta suscipit tempora velit?
+                    </h5>
+                </div>
+            </div>
+            <br>
+            <div class="row mt-lg-5">
+                <div class="col-md-8 order-12 order-md-1">
+                    <h5>
+                        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus consequatur deleniti
+                            eaque
+                            eveniet inventore.
+                        </div>
+                    </h5>
+                </div>
+                <div class="col-md-4 order-1 order-md-12">
+                    <h3>
+                        Download paper from China mirror. Much faster.
+                    </h3>
+                </div>
+            </div>
+            <br>
+            <div class="row mt-lg-5">
+                <div class="col-md-4">
+                    <h3>
+                        Import arXiv papers to your queue and public paper library.
+                    </h3>
+                </div>
+                <div class="col-md-8">
+                    <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam consequuntur debitis doloribus
+                        enim expedita, facere fugiat incidunt libero, minima nisi repellat sed vero, voluptates. Culpa
+                        fuga nihil officiis repellendus saepe.</h5>
+                </div>
+            </div>
+        </div>
+        <div class="jumbotron">
+            <div class="row mt-lg-5 justify-content-center">
+                <h5>
+                    Start your arXivER trip!
+                </h5>
+            </div>
+            <div class="row justify-content-center">
+                <div class="mt-lg-5">
+                    <a href="/signup" role="button" class="btn btn-outline-primary">
+                        Sign Up
+                    </a> or
+                    <a href="/explore" role="button" class="btn btn-outline-info">
+                        Explore
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class=" text-muted row d-flex justify-content-center">
+        Photo by Tae Fuller from Pexels
+    </div>
+    {% include "components/signup_component.html" %}
+    <script>
+        new Vue({
+            el: '#random_paper_view',
+            data() {
+                return {
+                    test: 233,
+                    query_result: null,
+                }
+            },
+            methods: {
+                query() {
+                    api.papers['random'].get().then((res) => {
+                        this.query_result = res.data;
+                    });
+                }
+            },
+            filters: {
+                paper_url(id) {
+                    return `/paper?id=${id}`;
+                }
+            },
+            mounted() {
+                this.query();
+            }
+        });
+    </script>
+{% endblock %}

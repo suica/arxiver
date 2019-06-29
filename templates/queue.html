@@ -1,0 +1,241 @@
+{% extends "bare.html" %}
+{% block content %}
+    <div class="container">
+        <div class="row" id="paper_queue">
+            <div class="col-md-7">
+                <div class="my-3">
+                    <h3>Paper Queue</h3>
+                </div>
+                <paperlist :data="query_result" :change_page="change_page"></paperlist>
+            </div>
+            <div class="col-md-5">
+                <div class="my-3">
+                    <h3>Options</h3>
+                </div>
+                <div>
+                    <div class="card card-body">
+                        <fieldset class="form-group">
+                            <button class="btn btn-outline-primary btn-block" @click="open_import_paper_modal">Import
+                                paper by arXiv id
+                            </button>
+
+                            <hr>
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <legend>Keyword</legend>
+                            <div class="form-row mb-3">
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" placeholder="keyword for some column"
+                                           aria-label="Example text with button addon" aria-describedby="button-addon1"
+                                           v-model.trim="keyword"
+                                    >
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="input-group-append">
+                                        <select class="custom-select" v-model="keyword_column">
+                                            <option v-for="name of all_columns" :value="name">
+                                                {{ name }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <legend>Tags</legend>
+                            <div class="row pl-1">
+                                <div class="col-9">
+                                    <div class="row px-3">
+                                        <div class="form-check col-6" v-for="tag_name in all_tags">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox"
+                                                       :value="tag_name" v-model="tags">
+                                                {{ tag_name }}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="row px-3">
+                                        <div class="form-check col-6">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox"
+                                                       value="all"
+                                                       v-model="tags.length == 0 || tags.length == all_tags.length">
+                                                All
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <legend>Finished</legend>
+                            <div class="row pl-1">
+                                <div class="col-9">
+                                    <div class="row px-3">
+                                        <div class="form-check col-6">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox"
+                                                       value="1" v-model="finished">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check col-6">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox"
+                                                       value="0" v-model="finished">
+                                                No
+                                            </label>
+                                        </div>
+                                        <div class="form-check col-6">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox"
+                                                       value="2" v-model="finished.length == 0 || finished.length == 2">
+                                                All
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                        </fieldset>
+                        <a href="/queue" role="button" class="btn btn-block btn-outline-secondary">Reset filter</a>
+                        <button type="button" class="btn btn-block btn-outline-info" @click="apply_filter">Apply
+                            filter
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+             id="import_paper_modal">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Import Paper</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-info" role="alert" v-show="show_alert">
+                            <span v-html="alert_msg"></span>
+                        </div>
+                        {#                        {{ alert_msg }}#}
+                        {#                        {{ show_alert }}#}
+                        <form @submit.prevent="">
+                            <div class="form-group">
+                                <label for="ipi">arXiv Address</label>
+                                <input type="text" class="form-control" v-model="imported_paper_id"
+                                       placeholder="https://arxiv.org/abs/1812.05148 or simply 1812.05148"
+                                       id="ipi"
+                                >
+                            </div>
+                            <button class="form-control btn btn-block btn-primary" @click="import_paper">Import</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include"components/paperlist_component.html" %}
+    <script>
+        new Vue({
+            el: '#paper_queue',
+            data() {
+                return {
+                    page: 1,
+                    per_page: 10,
+                    tags: [],
+                    finished: [],
+                    query_result: {},
+                    all_tags: [],
+                    all_columns: ["id", "title", "summary", "arxiv_comment", "journal_reference", "doi"],
+                    keyword: '',
+                    keyword_column: 'title',
+                }
+            },
+            methods: {
+                apply_filter() {
+                    this.page = 1;
+                    this.query();
+                },
+                change_page(pg) {
+                    this.page = pg;
+                    this.query();
+                },
+                query() {
+                    api.users['0'].papers.get({}, {
+                        ...this.condition
+                    }).then((res) => {
+                        console.log(res.data);
+                        this.query_result = res.data;
+                    });
+                },
+                open_import_paper_modal() {
+                    $('#import_paper_modal').modal('show');
+                }
+            },
+            computed: {
+                has_token() {
+                    if (localStorage.token) {
+                        if (localStorage.token.length > 1) {
+                            return true;
+                        }
+                    }
+                },
+                condition() {
+                    return {
+                        page: this.page,
+                        per_page: this.per_page,
+                        tags: this.tags.join(','),
+                        finished: this.finished.join(','),
+                        keyword: this.keyword,
+                        keyword_column: this.keyword_column
+                    }
+                },
+            },
+            created() {
+                this.query();
+                api.tags.get().then((res) => {
+                    return res.data.map(({name}) => name);
+                }).then((res) => {
+                    this.all_tags = res;
+                });
+            }
+        })
+    </script>
+    <script>
+        new Vue({
+            el: '#import_paper_modal',
+            data() {
+                return {
+                    imported_paper_id: '',
+                    alert_msg: '',
+                    show_alert: false,
+                }
+            },
+            methods: {
+                import_paper() {
+                    this.show_alert = true;
+                    this.alert_msg = 'Loading...';
+                    api.users['0'].papers.post({
+                        paper_id: this.imported_paper_id,
+                        create: true,
+                    }).then((res) => {
+                        let data = res.data;
+                        console.log(data);
+                        this.alert_msg = 'Ok.';
+                        this.imported_paper_id = '';
+                    }).catch((err) => {
+                        this.alert_msg = 'Error. Please follow the input format, or the paper is already in your queue.';
+                    }).finally((err) => {
+                        this.show_alert = true;
+                    })
+                }
+            }
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,104 @@
+<script type="text/x-template" id="navbar_component_template">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">arXivER </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" :class="{'active':is_active('queue')}">
+                    <a class="nav-link" href="/queue">Queue<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item" :class="{'active':is_active('explore')}">
+                    <a class="nav-link" href="/explore">Explore</a>
+                </li>
+                <li class="nav-item" :class="{'active':is_active('manage')}" v-show="is_manager">
+                    <a class="nav-link" href="/manage">Manage</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav" v-show="has_token">
+                <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action"
+                   aria-expanded="false">
+                    <img :src="avatar_url"
+                         v-show="avatar_url"
+                         class="avatar rounded-circle" alt="Avatar"/>
+                    {{ username }}
+                </a>
+                <div class="dropdown">
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
+                        <button class="dropdown-item" @click.prevent="handle_open_change_password">
+                            Change password
+                        </button>
+                        <div class="divider dropdown-divider"></div>
+                        <button class="dropdown-item" @click.prevent="handle_logout">Logout</button>
+                    </div>
+                </div>
+            </ul>
+            <ul class="navbar-nav" v-show="!has_token">
+                <li class="nav-item">
+                    <a class="nav-link" href="/signin">
+                        Sign In
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/signup">
+                        Sign Up
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <change_password id="change_password_modal"></change_password>
+    </nav>
+</script>
+<script>
+    Vue.component('navbar', {
+        template: '#navbar_component_template',
+        data() {
+            return {
+                avatar_url: '',
+                username: '',
+                role_id: 0,
+            }
+        },
+        methods: {
+            handle_logout() {
+                localStorage.token = '';
+                {#console.log(document.cookie,'hahhahhaa');#}
+                window.location = '/signout';
+            },
+            handle_open_change_password() {
+                $('#change_password_modal').modal('show');
+            },
+            is_active(name) {
+                return name == window.location.pathname.substr(1);
+            },
+        },
+        computed: {
+            has_token() {
+                if (localStorage.token) {
+                    if (localStorage.token.length) {
+                        return true;
+                    }
+                }
+            },
+            is_manager() {
+                return this.role_id > 1;
+            },
+        },
+        mounted() {
+            //axios.get('https://en.gravatar.com/205e460b479e2e5b48aec07710c08d50.json').then((res) => {
+            //    let [first, ...left] = res.data.entry;
+            //    if (first) {
+            //        this.avatar_url = first.thumbnailUrl;
+            //    }
+            //});
+            api.users['0'].get().then((res) => {
+                let {data} = res;
+                this.username = data.username;
+                this.role_id = data.role_id;
+            });
+        },
+    });
+</script>

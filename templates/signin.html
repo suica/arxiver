@@ -1,0 +1,16 @@
+{% extends "bare.html" %}
+{% block title %}
+    - Sign In
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 mt-3">
+                <div class="vue_component">
+                    <signin></signin>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include "components/signin_component.html" %}
+{% endblock %}

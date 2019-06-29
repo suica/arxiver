@@ -1,0 +1,124 @@
+<script type="text/x-template" id="paperlist_component_template">
+    <div>
+        <nav class="mt-3 px-3" v-if="total_pages">
+            {#            props: ['change_page', 'total_pages', 'page', 'has_prev', 'has_next'],#}
+            <pagination :change_page="change_page"
+                        :total_pages="total_pages"
+                        :page="page"
+                        :has_prev="has_prev"
+                        :has_next="has_next"
+            >
+            </pagination>
+            {#            <ul class="pagination justify-content-center">#}
+            {#                <li class="page-item" :class="{'disabled':!has_prev}">#}
+            {#                    <a class="page-link nav-link" aria-label="Previous"#}
+            {#                       href="javascript:void(0)"#}
+            {#                       @click="change_page(page-1)"#}
+            {#                    >#}
+            {#                        <span aria-hidden="true">&laquo;</span>#}
+            {#                    </a>#}
+            {#                </li>#}
+            {#                <li class="page-item" v-for="i in total_pages" :class="{'active':i==page}">#}
+            {#                    <a href="javascript:void(0)" class="page-link" @click="change_page(i)">{{ i }}</a>#}
+            {#                </li>#}
+            {#                <li class="page-item" :class="{'disabled':!has_next}">#}
+            {#                    <a href="javascript:void(0)" class="page-link" aria-label="Next"#}
+            {#                       @click="$parent.change_page(page+1)">#}
+            {#                        <span aria-hidden="true">&raquo;</span>#}
+            {#                    </a>#}
+            {#                </li>#}
+            {#            </ul>#}
+        </nav>
+        <div class="list-group">
+            <a :href="paper_url(item.id)" class="list-group-item list-group-item-action" v-for="item of items">
+                <div class="row p-3">
+                    <div class="col-9 border-right pr-5">
+                        <div class="row">
+                            <div class="mr-auto">
+                                <h5>
+                                    {{ item.title }}
+                                    <span class="text-muted"> ( {{ item.id }} ) </span>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <a :href="item.name | author_url" v-for="item,k of item.authors">
+                                <span v-if="k">
+                                    &nbsp;
+                                </span>
+                                {{ item.name }}
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-2 offset-1 ">
+                        <div class="justify-content-start">
+                            <div class="row justify-content-start">
+                                <span v-for="{tag_name,is_primary} of item.tags" v-show="is_primary">
+                                    {{ tag_name }}
+                                </span>
+                            </div>
+                            <div v-if="item.published">
+                                <div class="row" v-for="time in item.published.split('T')">
+                                    <small> {{ time }} </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <nav class="mt-3 px-3" v-if="total_pages">
+            <div class="justify-content-center row my-3">
+                <span class="text-muted">
+                {{ per_page }} item(s) per page;
+                    {{ total_pages }} pages;
+                {{ total_items }} item(s).
+                </span>
+            </div>
+            <pagination :change_page="change_page"
+                        :total_pages="total_pages"
+                        :page="page"
+                        :has_prev="has_prev"
+                        :has_next="has_next"
+            >
+            </pagination>
+        </nav>
+        <nav class="mt-3 px-3" v-else>
+            No paper for this condition.
+        </nav>
+    </div>
+</script>
+<script>
+    Vue.component('paperlist', {
+        template: '#paperlist_component_template',
+        props: ['data','change_page'],
+        data() {
+            return {
+                ...raw_pagination,
+            }
+        },
+        methods: {
+            paper_url(paper_id) {
+                return `/paper?id=${paper_id}`;
+            },
+        },
+        filters: {
+            author_url(author_name = '') {
+                return `https://arxiv.org/search/cs?query=${author_name}&searchtype=author`;
+            }
+        },
+        computed: {},
+        watch: {
+            data() {
+                for (let k in this.data) {
+                    this[k] = this.data[k]
+                }
+                if (this.items.length && this.items[0].paper) {
+                    this.items = this.items.map(({paper}) => {
+                        return paper
+                    })
+                }
+            }
+        }
+    });
+</script>

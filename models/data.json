@@ -1,0 +1,523 @@
+[{
+	"id": "http://arxiv.org/abs/1104.0582v1",
+	"guidislink": true,
+	"updated": "2011-04-04T14:18:51Z",
+	"updated_parsed": [2011, 4, 4, 14, 18, 51, 0, 94, 0],
+	"published": "2011-04-04T14:18:51Z",
+	"published_parsed": [2011, 4, 4, 14, 18, 51, 0, 94, 0],
+	"title": "Visual Concept Detection and Real Time Object Detection",
+	"title_detail": {
+		"type": "text/plain",
+		"language": null,
+		"base": "http://export.arxiv.org/api/query?search_query=detection&id_list=&start=0&max_results=10",
+		"value": "Visual Concept Detection and Real Time Object Detection"
+	},
+	"summary": "Bag-of-words model is implemented and tried on 10-class visual concept\ndetection problem. The experimental results show that \"DURF+ERT+SVM\"\noutperforms \"SIFT+ERT+SVM\" both in detection performance and computation\nefficiency. Besides, combining DURF and SIFT results in even better detection\nperformance. Real-time object detection using SIFT and RANSAC is also tried on\nsimple objects, e.g. drink can, and good result is achieved.",
+	"summary_detail": {
+		"type": "text/plain",
+		"language": null,
+		"base": "http://export.arxiv.org/api/query?search_query=detection&id_list=&start=0&max_results=10",
+		"value": "Bag-of-words model is implemented and tried on 10-class visual concept\ndetection problem. The experimental results show that \"DURF+ERT+SVM\"\noutperforms \"SIFT+ERT+SVM\" both in detection performance and computation\nefficiency. Besides, combining DURF and SIFT results in even better detection\nperformance. Real-time object detection using SIFT and RANSAC is also tried on\nsimple objects, e.g. drink can, and good result is achieved."
+	},
+	"authors": ["Ran Tao"],
+	"author_detail": {
+		"name": "Ran Tao"
+	},
+	"author": "Ran Tao",
+	"links": [{
+		"href": "http://arxiv.org/abs/1104.0582v1",
+		"rel": "alternate",
+		"type": "text/html"
+	}, {
+		"title": "pdf",
+		"href": "http://arxiv.org/pdf/1104.0582v1",
+		"rel": "related",
+		"type": "application/pdf"
+	}],
+	"arxiv_primary_category": {
+		"term": "cs.CV",
+		"scheme": "http://arxiv.org/schemas/atom"
+	},
+	"tags": [{
+		"term": "cs.CV",
+		"scheme": "http://arxiv.org/schemas/atom",
+		"label": null
+	}],
+	"pdf_url": "http://arxiv.org/pdf/1104.0582v1",
+	"affiliation": "None",
+	"arxiv_url": "http://arxiv.org/abs/1104.0582v1",
+	"arxiv_comment": null,
+	"journal_reference": null,
+	"doi": null
+}, {
+	"id": "http://arxiv.org/abs/1311.1446v1",
+	"guidislink": true,
+	"updated": "2013-11-06T16:59:06Z",
+	"updated_parsed": [2013, 11, 6, 16, 59, 6, 2, 310, 0],
+	"published": "2013-11-06T16:59:06Z",
+	"published_parsed": [2013, 11, 6, 16, 59, 6, 2, 310, 0],
+	"title": "Cluster Based Cost Efficient Intrusion Detection System For Manet",
+	"title_detail": {
+		"type": "text/plain",
+		"language": null,
+		"base": "http://export.arxiv.org/api/query?search_query=detection&id_list=&start=0&max_results=10",
+		"value": "Cluster Based Cost Efficient Intrusion Detection System For Manet"
+	},
+	"summary": "Mobile ad-hoc networks are temporary wireless networks. Network resources are\nabnormally consumed by intruders. Anomaly and signature based techniques are\nused for intrusion detection. Classification techniques are used in anomaly\nbased techniques. Intrusion detection techniques are used for the network\nattack detection process. Two types of intrusion detection systems are\navailable. They are anomaly detection and signature based detection model. The\nanomaly detection model uses the historical transactions with attack labels.\nThe signature database is used in the signature based IDS schemes.\n  The mobile ad-hoc networks are infrastructure less environment. The intrusion\ndetection applications are placed in a set of nodes under the mobile ad-hoc\nnetwork environment. The nodes are grouped into clusters. The leader nodes are\nassigned for the clusters. The leader node is assigned for the intrusion\ndetection process. Leader nodes are used to initiate the intrusion detection\nprocess. Resource sharing and lifetime management factors are considered in the\nleader election process. The system optimizes the leader election and intrusion\ndetection process.\n  The system is designed to handle leader election and intrusion detection\nprocess. The clustering scheme is optimized with coverage and traffic level.\nCost and resource utilization is controlled under the clusters. Node mobility\nis managed by the system.",
+	"summary_detail": {
+		"type": "text/plain",
+		"language": null,
+		"base": "http://export.arxiv.org/api/query?search_query=detection&id_list=&start=0&max_results=10",
+		"value": "Mobile ad-hoc networks are temporary wireless networks. Network resources are\nabnormally consumed by intruders. Anomaly and signature based techniques are\nused for intrusion detection. Classification techniques are used in anomaly\nbased techniques. Intrusion detection techniques are used for the network\nattack detection process. Two types of intrusion detection systems are\navailable. They are anomaly detection and signature based detection model. The\nanomaly detection model uses the historical transactions with attack labels.\nThe signature database is used in the signature based IDS schemes.\n  The mobile ad-hoc networks are infrastructure less environment. The intrusion\ndetection applications are placed in a set of nodes under the mobile ad-hoc\nnetwork environment. The nodes are grouped into clusters. The leader nodes are\nassigned for the clusters. The leader node is assigned for the intrusion\ndetection process. Leader nodes are used to initiate the intrusion detection\nprocess. Resource sharing and lifetime management factors are considered in the\nleader election process. The system optimizes the leader election and intrusion\ndetection process.\n  The system is designed to handle leader election and intrusion detection\nprocess. The clustering scheme is optimized with coverage and traffic level.\nCost and resource utilization is controlled under the clusters. Node mobility\nis managed by the system."
+	},
+	"authors": ["Saravanan Kumarasamy", "Hemalatha B", "Hashini P"],
+	"author_detail": {
+		"name": "Hashini P"
+	},
+	"author": "Hashini P",
+	"links": [{
+		"href": "http://arxiv.org/abs/1311.1446v1",
+		"rel": "alternate",
+		"type": "text/html"
+	}, {
+		"title": "pdf",
+		"href": "http://arxiv.org/pdf/1311.1446v1",
+		"rel": "related",
+		"type": "application/pdf"
+	}],
+	"arxiv_primary_category": {
+		"term": "cs.CR",
+		"scheme": "http://arxiv.org/schemas/atom"
+	},
+	"tags": [{
+		"term": "cs.CR",
+		"scheme": "http://arxiv.org/schemas/atom",
+		"label": null
+	}, {
+		"term": "cs.NI",
+		"scheme": "http://arxiv.org/schemas/atom",
+		"label": null
+	}],
+	"pdf_url": "http://arxiv.org/pdf/1311.1446v1",
+	"affiliation": "None",
+	"arxiv_url": "http://arxiv.org/abs/1311.1446v1",
+	"arxiv_comment": null,
+	"journal_reference": null,
+	"doi": null
+}, {
+	"id": "http://arxiv.org/abs/1612.08242v1",
+	"guidislink": true,
+	"updated": "2016-12-25T07:21:38Z",
+	"updated_parsed": [2016, 12, 25, 7, 21, 38, 6, 360, 0],
+	"published": "2016-12-25T07:21:38Z",
+	"published_parsed": [2016, 12, 25, 7, 21, 38, 6, 360, 0],
+	"title": "YOLO9000: Better, Faster, Stronger",
+	"title_detail": {
+		"type": "text/plain",
+		"language": null,
+		"base": "http://export.arxiv.org/api/query?search_query=detection&id_list=&start=0&max_results=10",
+		"value": "YOLO9000: Better, Faster, Stronger"
+	},
+	"summary": "We introduce YOLO9000, a state-of-the-art, real-time object detection system\nthat can detect over 9000 object categories. First we propose various\nimprovements to the YOLO detection method, both novel and drawn from prior\nwork. The improved model, YOLOv2, is state-of-the-art on standard detection\ntasks like PASCAL VOC and COCO. At 67 FPS, YOLOv2 gets 76.8 mAP on VOC 2007. At\n40 FPS, YOLOv2 gets 78.6 mAP, outperforming state-of-the-art methods like\nFaster RCNN with ResNet and SSD while still running significantly faster.\nFinally we propose a method to jointly train on object detection and\nclassification. Using this method we train YOLO9000 simultaneously on the COCO\ndetection dataset and the ImageNet classification dataset. Our joint training\nallows YOLO9000 to predict detections for object classes that don't have\nlabelled detection data. We validate our approach on the ImageNet detection\ntask. YOLO9000 gets 19.7 mAP on the ImageNet detection validation set despite\nonly having detection data for 44 of the 200 classes. On the 156 classes not in\nCOCO, YOLO9000 gets 16.0 mAP. But YOLO can detect more than just 200 classes;\nit predicts detections for more than 9000 different object categories. And it\nstill runs in real-time.",
+	"summary_detail": {
+		"type": "text/plain",
+		"language": null,
+		"base": "http://export.arxiv.org/api/query?search_query=detection&id_list=&start=0&max_results=10",
+		"value": "We introduce YOLO9000, a state-of-the-art, real-time object detection system\nthat can detect over 9000 object categories. First we propose various\nimprovements to the YOLO detection method, both novel and drawn from prior\nwork. The improved model, YOLOv2, is state-of-the-art on standard detection\ntasks like PASCAL VOC and COCO. At 67 FPS, YOLOv2 gets 76.8 mAP on VOC 2007. At\n40 FPS, YOLOv2 gets 78.6 mAP, outperforming state-of-the-art methods like\nFaster RCNN with ResNet and SSD while still running significantly faster.\nFinally we propose a method to jointly train on object detection and\nclassification. Using this method we train YOLO9000 simultaneously on the COCO\ndetection dataset and the ImageNet classification dataset. Our joint training\nallows YOLO9000 to predict detections for object classes that don't have\nlabelled detection data. We validate our approach on the ImageNet detection\ntask. YOLO9000 gets 19.7 mAP on the ImageNet detection validation set despite\nonly having detection data for 44 of the 200 classes. On the 156 classes not in\nCOCO, YOLO9000 gets 16.0 mAP. But YOLO can detect more than just 200 classes;\nit predicts detections for more than 9000 different object categories. And it\nstill runs in real-time."
+	},
+	"authors": ["Joseph Redmon", "Ali Farhadi"],
+	"author_detail": {
+		"name": "Ali Farhadi"
+	},
+	"author": "Ali Farhadi",
+	"links": [{
+		"href": "http://arxiv.org/abs/1612.08242v1",
+		"rel": "alternate",
+		"type": "text/html"
+	}, {
+		"title": "pdf",
+		"href": "http://arxiv.org/pdf/1612.08242v1",
+		"rel": "related",
+		"type": "application/pdf"
+	}],
+	"arxiv_primary_category": {
+		"term": "cs.CV",
+		"scheme": "http://arxiv.org/schemas/atom"
+	},
+	"tags": [{
+		"term": "cs.CV",
+		"scheme": "http://arxiv.org/schemas/atom",
+		"label": null
+	}],
+	"pdf_url": "http://arxiv.org/pdf/1612.08242v1",
+	"affiliation": "None",
+	"arxiv_url": "http://arxiv.org/abs/1612.08242v1",
+	"arxiv_comment": null,
+	"journal_reference": null,
+	"doi": null
+}, {
+	"id": "http://arxiv.org/abs/1409.4590v1",
+	"guidislink": true,
+	"updated": "2014-09-16T11:37:06Z",
+	"updated_parsed": [2014, 9, 16, 11, 37, 6, 1, 259, 0],
+	"published": "2014-09-16T11:37:06Z",
+	"published_parsed": [2014, 9, 16, 11, 37, 6, 1, 259, 0],
+	"title": "Status of Dark Matter Detection",
+	"title_detail": {
+		"type": "text/plain",
+		"language": null,
+		"base": "http://export.arxiv.org/api/query?search_query=detection&id_list=&start=0&max_results=10",
+		"value": "Status of Dark Matter Detection"
+	},
+	"summary": "The detection of dark matter has made great progresses in recent years. We\ngive a brief review on the status and progress in dark matter detection,\nincluding the progresses in direct detection, collider detection at LHC and\nfocus on the indirect detection. The results from PAMELA, ATIC, Fermi-LAT and\nrelevant studies on these results are introduced. Then we give the progress on\nindirect detection of gamma rays from Fermi-LAT and ground based Cerenkov\ntelescopes. Finally the detection of neutrinos and constraints on the nature of\ndark matter are reviewed briefly.",
+	"summary_detail": {
+		"type": "text/plain",
+		"language": null,
+		"base": "http://export.arxiv.org/api/query?search_query=detection&id_list=&start=0&max_results=10",
+		"value": "The detection of dark matter has made great progresses in recent years. We\ngive a brief review on the status and progress in dark matter detection,\nincluding the progresses in direct detection, collider detection at LHC and\nfocus on the indirect detection. The results from PAMELA, ATIC, Fermi-LAT and\nrelevant studies on these results are introduced. Then we give the progress on\nindirect detection of gamma rays from Fermi-LAT and ground based Cerenkov\ntelescopes. Finally the detection of neutrinos and constraints on the nature of\ndark matter are reviewed briefly."
+	},
+	"authors": ["Xiao-Jun Bi", "Peng-Fei Yin", "Qiang Yuan"],
+	"author_detail": {
+		"name": "Qiang Yuan"
+	},
+	"author": "Qiang Yuan",
+	"arxiv_comment": "33 pages, invited review",
+	"links": [{
+		"href": "http://arxiv.org/abs/1409.4590v1",
+		"rel": "alternate",
+		"type": "text/html"
+	}, {
+		"title": "pdf",
+		"href": "http://arxiv.org/pdf/1409.4590v1",
+		"rel": "related",
+		"type": "application/pdf"
+	}],
+	"arxiv_primary_category": {
+		"term": "hep-ph",
+		"scheme": "http://arxiv.org/schemas/atom"
+	},
+	"tags": [{
+		"term": "hep-ph",
+		"scheme": "http://arxiv.org/schemas/atom",
+		"label": null
+	}],
+	"pdf_url": "http://arxiv.org/pdf/1409.4590v1",
+	"affiliation": "None",
+	"arxiv_url": "http://arxiv.org/abs/1409.4590v1",
+	"journal_reference": "Front.Phys.China 8 (2013) 794-827",
+	"doi": null
+}, {
+	"id": "http://arxiv.org/abs/1805.09411v1",
+	"guidislink": true,
+	"updated": "2018-05-23T20:09:07Z",
+	"updated_parsed": [2018, 5, 23, 20, 9, 7, 2, 143, 0],
+	"published": "2018-05-23T20:09:07Z",
+	"published_parsed": [2018, 5, 23, 20, 9, 7, 2, 143, 0],
+	"title": "A Generalized Active Learning Approach for Unsupervised Anomaly\n  Detection",
+	"title_detail": {
+		"type": "text/plain",
+		"language": null,
+		"base": "http://export.arxiv.org/api/query?search_query=detection&id_list=&start=0&max_results=10",
+		"value": "A Generalized Active Learning Approach for Unsupervised Anomaly\n  Detection"
+	},
+	"summary": "This work formalizes the new framework for anomaly detection, called active\nanomaly detection. This framework has, in practice, the same cost of\nunsupervised anomaly detection but with the possibility of much better results.\nWe show that unsupervised anomaly detection is an undecidable problem and that\na prior needs to be assumed for the anomalies probability distribution in order\nto have performance guarantees. Finally, we also present a new layer that can\nbe attached to any deep learning model designed for unsupervised anomaly\ndetection to transform it into an active anomaly detection method, presenting\nresults on both synthetic and real anomaly detection datasets.",
+	"summary_detail": {
+		"type": "text/plain",
+		"language": null,
+		"base": "http://export.arxiv.org/api/query?search_query=detection&id_list=&start=0&max_results=10",
+		"value": "This work formalizes the new framework for anomaly detection, called active\nanomaly detection. This framework has, in practice, the same cost of\nunsupervised anomaly detection but with the possibility of much better results.\nWe show that unsupervised anomaly detection is an undecidable problem and that\na prior needs to be assumed for the anomalies probability distribution in order\nto have performance guarantees. Finally, we also present a new layer that can\nbe attached to any deep learning model designed for unsupervised anomaly\ndetection to transform it into an active anomaly detection method, presenting\nresults on both synthetic and real anomaly detection datasets."
+	},
+	"authors": ["Tiago Pimentel", "Marianne Monteiro", "Juliano Viana", "Adriano Veloso", "Nivio Ziviani"],
+	"author_detail": {
+		"name": "Nivio Ziviani"
+	},
+	"author": "Nivio Ziviani",
+	"links": [{
+		"href": "http://arxiv.org/abs/1805.09411v1",
+		"rel": "alternate",
+		"type": "text/html"
+	}, {
+		"title": "pdf",
+		"href": "http://arxiv.org/pdf/1805.09411v1",
+		"rel": "related",
+		"type": "application/pdf"
+	}],
+	"arxiv_primary_category": {
+		"term": "stat.ML",
+		"scheme": "http://arxiv.org/schemas/atom"
+	},
+	"tags": [{
+		"term": "stat.ML",
+		"scheme": "http://arxiv.org/schemas/atom",
+		"label": null
+	}, {
+		"term": "cs.LG",
+		"scheme": "http://arxiv.org/schemas/atom",
+		"label": null
+	}],
+	"pdf_url": "http://arxiv.org/pdf/1805.09411v1",
+	"affiliation": "None",
+	"arxiv_url": "http://arxiv.org/abs/1805.09411v1",
+	"arxiv_comment": null,
+	"journal_reference": null,
+	"doi": null
+}, {
+	"id": "http://arxiv.org/abs/1810.02659v1",
+	"guidislink": true,
+	"updated": "2018-10-05T13:05:21Z",
+	"updated_parsed": [2018, 10, 5, 13, 5, 21, 4, 278, 0],
+	"published": "2018-10-05T13:05:21Z",
+	"published_parsed": [2018, 10, 5, 13, 5, 21, 4, 278, 0],
+	"title": "Automated Fix Detection Given Flaky Tests",
+	"title_detail": {
+		"type": "text/plain",
+		"language": null,
+		"base": "http://export.arxiv.org/api/query?search_query=detection&id_list=&start=0&max_results=10",
+		"value": "Automated Fix Detection Given Flaky Tests"
+	},
+	"summary": "Research Proposal in Automated Fix Detection",
+	"summary_detail": {
+		"type": "text/plain",
+		"language": null,
+		"base": "http://export.arxiv.org/api/query?search_query=detection&id_list=&start=0&max_results=10",
+		"value": "Research Proposal in Automated Fix Detection"
+	},
+	"authors": ["David Landsberg", "Earl Barr"],
+	"author_detail": {
+		"name": "Earl Barr"
+	},
+	"author": "Earl Barr",
+	"links": [{
+		"href": "http://arxiv.org/abs/1810.02659v1",
+		"rel": "alternate",
+		"type": "text/html"
+	}, {
+		"title": "pdf",
+		"href": "http://arxiv.org/pdf/1810.02659v1",
+		"rel": "related",
+		"type": "application/pdf"
+	}],
+	"arxiv_primary_category": {
+		"term": "cs.SE",
+		"scheme": "http://arxiv.org/schemas/atom"
+	},
+	"tags": [{
+		"term": "cs.SE",
+		"scheme": "http://arxiv.org/schemas/atom",
+		"label": null
+	}],
+	"pdf_url": "http://arxiv.org/pdf/1810.02659v1",
+	"affiliation": "None",
+	"arxiv_url": "http://arxiv.org/abs/1810.02659v1",
+	"arxiv_comment": null,
+	"journal_reference": null,
+	"doi": null
+}, {
+	"id": "http://arxiv.org/abs/1312.5224v1",
+	"guidislink": true,
+	"updated": "2013-12-18T17:03:54Z",
+	"updated_parsed": [2013, 12, 18, 17, 3, 54, 2, 352, 0],
+	"published": "2013-12-18T17:03:54Z",
+	"published_parsed": [2013, 12, 18, 17, 3, 54, 2, 352, 0],
+	"title": "The passive and active periods for the intermittent use of an active\n  sensor to detect an evasive target",
+	"title_detail": {
+		"type": "text/plain",
+		"language": null,
+		"base": "http://export.arxiv.org/api/query?search_query=detection&id_list=&start=0&max_results=10",
+		"value": "The passive and active periods for the intermittent use of an active\n  sensor to detect an evasive target"
+	},
+	"summary": "Your task is to detect a submarine with your active sonar. The submarine can\nhear your active sonar before you can detect him. If the submarine is fast\nenough he can evade you before you can detect him. How do you then detect him?\nIf you are using your active sonar continuously you will not detect him.\nLikewise, if you are not using your sonar at all. In between those two extremes\nthere is an optimum. We will find that optimum. Or said more precisely and\ngeneral: In the same two dimensional region two platforms are present. One\nplatform, the searcher, equipped with one active sensor (sonar, radar, lidar\netc.), is trying to detect the other platform, the target, by means of its\nactive sensor. The target tries to avoid detection using only a passive sensor\nto detect the searcher. The target can detect the active sensor before the\nsearcher can detect the target (forestalling). The active sensor is therefore\nused intermittently to surprise the target. The aim of this study is to\nquantify the passive period of the active sensor by minimizing missed detection\nopportunities. The active period is subsequently found by maximizing the\naverage detection width of the searcher sensor over time.",
+	"summary_detail": {
+		"type": "text/plain",
+		"language": null,
+		"base": "http://export.arxiv.org/api/query?search_query=detection&id_list=&start=0&max_results=10",
+		"value": "Your task is to detect a submarine with your active sonar. The submarine can\nhear your active sonar before you can detect him. If the submarine is fast\nenough he can evade you before you can detect him. How do you then detect him?\nIf you are using your active sonar continuously you will not detect him.\nLikewise, if you are not using your sonar at all. In between those two extremes\nthere is an optimum. We will find that optimum. Or said more precisely and\ngeneral: In the same two dimensional region two platforms are present. One\nplatform, the searcher, equipped with one active sensor (sonar, radar, lidar\netc.), is trying to detect the other platform, the target, by means of its\nactive sensor. The target tries to avoid detection using only a passive sensor\nto detect the searcher. The target can detect the active sensor before the\nsearcher can detect the target (forestalling). The active sensor is therefore\nused intermittently to surprise the target. The aim of this study is to\nquantify the passive period of the active sensor by minimizing missed detection\nopportunities. The active period is subsequently found by maximizing the\naverage detection width of the searcher sensor over time."
+	},
+	"authors": ["Niels Bache"],
+	"author_detail": {
+		"name": "Niels Bache"
+	},
+	"author": "Niels Bache",
+	"arxiv_comment": "Key words: Active sensor. Sonar. Radar. Lidar. Evasive target.\n  Detection. Missed opportunities. Detection width. Forestalling. Counter\n  detection",
+	"links": [{
+		"href": "http://arxiv.org/abs/1312.5224v1",
+		"rel": "alternate",
+		"type": "text/html"
+	}, {
+		"title": "pdf",
+		"href": "http://arxiv.org/pdf/1312.5224v1",
+		"rel": "related",
+		"type": "application/pdf"
+	}],
+	"arxiv_primary_category": {
+		"term": "stat.AP",
+		"scheme": "http://arxiv.org/schemas/atom"
+	},
+	"tags": [{
+		"term": "stat.AP",
+		"scheme": "http://arxiv.org/schemas/atom",
+		"label": null
+	}],
+	"pdf_url": "http://arxiv.org/pdf/1312.5224v1",
+	"affiliation": "None",
+	"arxiv_url": "http://arxiv.org/abs/1312.5224v1",
+	"journal_reference": null,
+	"doi": null
+}, {
+	"id": "http://arxiv.org/abs/1506.08504v2",
+	"guidislink": true,
+	"updated": "2016-01-19T02:18:43Z",
+	"updated_parsed": [2016, 1, 19, 2, 18, 43, 1, 19, 0],
+	"published": "2015-06-29T04:39:14Z",
+	"published_parsed": [2015, 6, 29, 4, 39, 14, 0, 180, 0],
+	"title": "Optimal sequential detection in multi-stream data",
+	"title_detail": {
+		"type": "text/plain",
+		"language": null,
+		"base": "http://export.arxiv.org/api/query?search_query=detection&id_list=&start=0&max_results=10",
+		"value": "Optimal sequential detection in multi-stream data"
+	},
+	"summary": "Consider a large number of detectors each generating a data stream. The task\nis to detect online, distribution changes in a small fraction of the data\nstreams. Previous approaches to this problem include the use of mixture\nlikelihood ratios and sum of CUSUMs. We provide here extensions and\nmodifications of these approaches that are optimal in detecting normal mean\nshifts. We show how the (optimal) detection delay depends on the fraction of\ndata streams undergoing distribution changes as the number of detectors goes to\ninfinity. There are three detection domains. In the first domain for moderately\nlarge fractions, immediate detection is possible. In the second domain for\nsmaller fractions, the detection delay grows logarithmically with the number of\ndetectors, with an asymptotic constant extending those in sparse normal mixture\ndetection. In the third domain for even smaller fractions, the detection delay\nlies in the framework of the classical detection delay formula of Lorden. We\nshow that the optimal detection delay is achieved by the sum of detectability\nscore transformations of either the partial scores or CUSUM scores of the data\nstreams.",
+	"summary_detail": {
+		"type": "text/plain",
+		"language": null,
+		"base": "http://export.arxiv.org/api/query?search_query=detection&id_list=&start=0&max_results=10",
+		"value": "Consider a large number of detectors each generating a data stream. The task\nis to detect online, distribution changes in a small fraction of the data\nstreams. Previous approaches to this problem include the use of mixture\nlikelihood ratios and sum of CUSUMs. We provide here extensions and\nmodifications of these approaches that are optimal in detecting normal mean\nshifts. We show how the (optimal) detection delay depends on the fraction of\ndata streams undergoing distribution changes as the number of detectors goes to\ninfinity. There are three detection domains. In the first domain for moderately\nlarge fractions, immediate detection is possible. In the second domain for\nsmaller fractions, the detection delay grows logarithmically with the number of\ndetectors, with an asymptotic constant extending those in sparse normal mixture\ndetection. In the third domain for even smaller fractions, the detection delay\nlies in the framework of the classical detection delay formula of Lorden. We\nshow that the optimal detection delay is achieved by the sum of detectability\nscore transformations of either the partial scores or CUSUM scores of the data\nstreams."
+	},
+	"authors": ["Hock Peng Chan"],
+	"author_detail": {
+		"name": "Hock Peng Chan"
+	},
+	"author": "Hock Peng Chan",
+	"links": [{
+		"href": "http://arxiv.org/abs/1506.08504v2",
+		"rel": "alternate",
+		"type": "text/html"
+	}, {
+		"title": "pdf",
+		"href": "http://arxiv.org/pdf/1506.08504v2",
+		"rel": "related",
+		"type": "application/pdf"
+	}],
+	"arxiv_primary_category": {
+		"term": "math.ST",
+		"scheme": "http://arxiv.org/schemas/atom"
+	},
+	"tags": [{
+		"term": "math.ST",
+		"scheme": "http://arxiv.org/schemas/atom",
+		"label": null
+	}, {
+		"term": "stat.TH",
+		"scheme": "http://arxiv.org/schemas/atom",
+		"label": null
+	}],
+	"pdf_url": "http://arxiv.org/pdf/1506.08504v2",
+	"affiliation": "None",
+	"arxiv_url": "http://arxiv.org/abs/1506.08504v2",
+	"arxiv_comment": null,
+	"journal_reference": null,
+	"doi": null
+}, {
+	"id": "http://arxiv.org/abs/1702.04377v1",
+	"guidislink": true,
+	"updated": "2017-02-14T20:21:09Z",
+	"updated_parsed": [2017, 2, 14, 20, 21, 9, 1, 45, 0],
+	"published": "2017-02-14T20:21:09Z",
+	"published_parsed": [2017, 2, 14, 20, 21, 9, 1, 45, 0],
+	"title": "Enhanced Facial Recognition Framework based on Skin Tone and False Alarm\n  Rejection",
+	"title_detail": {
+		"type": "text/plain",
+		"language": null,
+		"base": "http://export.arxiv.org/api/query?search_query=detection&id_list=&start=0&max_results=10",
+		"value": "Enhanced Facial Recognition Framework based on Skin Tone and False Alarm\n  Rejection"
+	},
+	"summary": "Face detection is one of the challenging tasks in computer vision. Human face\ndetection plays an essential role in the first stage of face processing\napplications such as face recognition, face tracking, image database\nmanagement, etc. In these applications, face objects often come from an\ninconsequential part of images that contain variations, namely different\nillumination, poses, and occlusion. These variations can decrease face\ndetection rate noticeably. Most existing face detection approaches are not\naccurate, as they have not been able to resolve unstructured images due to\nlarge appearance variations and can only detect human faces under one\nparticular variation. Existing frameworks of face detection need enhancements\nto detect human faces under the stated variations to improve detection rate and\nreduce detection time. In this study, an enhanced face detection framework is\nproposed to improve detection rate based on skin color and provide a validation\nprocess. A preliminary segmentation of the input images based on skin color can\nsignificantly reduce search space and accelerate the process of human face\ndetection. The primary detection is based on Haar-like features and the\nAdaboost algorithm. A validation process is introduced to reject non-face\nobjects, which might occur during the face detection process. The validation\nprocess is based on two-stage Extended Local Binary Patterns. The experimental\nresults on the CMU-MIT and Caltech 10000 datasets over a wide range of facial\nvariations in different colors, positions, scales, and lighting conditions\nindicated a successful face detection rate.",
+	"summary_detail": {
+		"type": "text/plain",
+		"language": null,
+		"base": "http://export.arxiv.org/api/query?search_query=detection&id_list=&start=0&max_results=10",
+		"value": "Face detection is one of the challenging tasks in computer vision. Human face\ndetection plays an essential role in the first stage of face processing\napplications such as face recognition, face tracking, image database\nmanagement, etc. In these applications, face objects often come from an\ninconsequential part of images that contain variations, namely different\nillumination, poses, and occlusion. These variations can decrease face\ndetection rate noticeably. Most existing face detection approaches are not\naccurate, as they have not been able to resolve unstructured images due to\nlarge appearance variations and can only detect human faces under one\nparticular variation. Existing frameworks of face detection need enhancements\nto detect human faces under the stated variations to improve detection rate and\nreduce detection time. In this study, an enhanced face detection framework is\nproposed to improve detection rate based on skin color and provide a validation\nprocess. A preliminary segmentation of the input images based on skin color can\nsignificantly reduce search space and accelerate the process of human face\ndetection. The primary detection is based on Haar-like features and the\nAdaboost algorithm. A validation process is introduced to reject non-face\nobjects, which might occur during the face detection process. The validation\nprocess is based on two-stage Extended Local Binary Patterns. The experimental\nresults on the CMU-MIT and Caltech 10000 datasets over a wide range of facial\nvariations in different colors, positions, scales, and lighting conditions\nindicated a successful face detection rate."
+	},
+	"authors": ["Ali Sharifara", "Mohd Shafry Mohd Rahim", "Farhad Navabifar", "Dylan Ebert", "Amir Ghaderi", "Michalis Papakostas"],
+	"author_detail": {
+		"name": "Michalis Papakostas"
+	},
+	"author": "Michalis Papakostas",
+	"links": [{
+		"href": "http://arxiv.org/abs/1702.04377v1",
+		"rel": "alternate",
+		"type": "text/html"
+	}, {
+		"title": "pdf",
+		"href": "http://arxiv.org/pdf/1702.04377v1",
+		"rel": "related",
+		"type": "application/pdf"
+	}],
+	"arxiv_primary_category": {
+		"term": "cs.CV",
+		"scheme": "http://arxiv.org/schemas/atom"
+	},
+	"tags": [{
+		"term": "cs.CV",
+		"scheme": "http://arxiv.org/schemas/atom",
+		"label": null
+	}],
+	"pdf_url": "http://arxiv.org/pdf/1702.04377v1",
+	"affiliation": "None",
+	"arxiv_url": "http://arxiv.org/abs/1702.04377v1",
+	"arxiv_comment": null,
+	"journal_reference": null,
+	"doi": null
+}, {
+	"id": "http://arxiv.org/abs/cs/0501001v1",
+	"guidislink": true,
+	"updated": "2005-01-01T03:14:14Z",
+	"updated_parsed": [2005, 1, 1, 3, 14, 14, 5, 1, 0],
+	"published": "2005-01-01T03:14:14Z",
+	"published_parsed": [2005, 1, 1, 3, 14, 14, 5, 1, 0],
+	"title": "A Survey of Distributed Intrusion Detection Approaches",
+	"title_detail": {
+		"type": "text/plain",
+		"language": null,
+		"base": "http://export.arxiv.org/api/query?search_query=detection&id_list=&start=0&max_results=10",
+		"value": "A Survey of Distributed Intrusion Detection Approaches"
+	},
+	"summary": "Distributed intrustion detection systems detect attacks on computer systems\nby analyzing data aggregated from distributed sources. The distributed nature\nof the data sources allows patterns in the data to be seen that might not be\ndetectable if each of the sources were examined individually. This paper\ndescribes the various approaches that have been developed to share and analyze\ndata in such systems, and discusses some issues that must be addressed before\nfully decentralized distributed intrusion detection systems can be made viable.",
+	"summary_detail": {
+		"type": "text/plain",
+		"language": null,
+		"base": "http://export.arxiv.org/api/query?search_query=detection&id_list=&start=0&max_results=10",
+		"value": "Distributed intrustion detection systems detect attacks on computer systems\nby analyzing data aggregated from distributed sources. The distributed nature\nof the data sources allows patterns in the data to be seen that might not be\ndetectable if each of the sources were examined individually. This paper\ndescribes the various approaches that have been developed to share and analyze\ndata in such systems, and discusses some issues that must be addressed before\nfully decentralized distributed intrusion detection systems can be made viable."
+	},
+	"authors": ["Michael Treaster"],
+	"author_detail": {
+		"name": "Michael Treaster"
+	},
+	"author": "Michael Treaster",
+	"links": [{
+		"href": "http://arxiv.org/abs/cs/0501001v1",
+		"rel": "alternate",
+		"type": "text/html"
+	}, {
+		"title": "pdf",
+		"href": "http://arxiv.org/pdf/cs/0501001v1",
+		"rel": "related",
+		"type": "application/pdf"
+	}],
+	"arxiv_primary_category": {
+		"term": "cs.CR",
+		"scheme": "http://arxiv.org/schemas/atom"
+	},
+	"tags": [{
+		"term": "cs.CR",
+		"scheme": "http://arxiv.org/schemas/atom",
+		"label": null
+	}],
+	"pdf_url": "http://arxiv.org/pdf/cs/0501001v1",
+	"affiliation": "None",
+	"arxiv_url": "http://arxiv.org/abs/cs/0501001v1",
+	"arxiv_comment": null,
+	"journal_reference": null,
+	"doi": null
+}]
