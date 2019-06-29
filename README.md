@@ -1,6 +1,6 @@
 # arXivER
 
-arXivER is a paper recorder which aims at enhancing the experience when using arXiv.
+arXivER is a paper reading assistant which aims at enhancing the experience when using arXiv.
 
 ## Run
 
@@ -29,7 +29,7 @@ Then go to the project folder.
 
 to start the server.
 
-Now, arXivER is run on `http://0.0.0.0:5000`.
+Now, arXivER is running on `http://0.0.0.0:5000`.
 
 
 ### Run Celery Worker
@@ -49,3 +49,11 @@ to execute the celery worker.
 First, run the server first. And run `cd app/tests`.
 
 Then use `python tests.py` to run the unit tests.
+
+## Deploy
+
+Will be added soon.
+
+## Screen shots
+
+Will be added soon.
