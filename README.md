@@ -71,4 +71,6 @@ Will be added soon.
 
 ## Screen shots
 
-Will be added soon.
+![login](/_/login.png)
+![explore](/_/explore.png)
+
