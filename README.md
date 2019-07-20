@@ -4,9 +4,7 @@ arXivER is a paper reading assistant using `Flask` and `Vue.js`, which aims at e
 
 # Install
 
-There are two ways to run arXivER, you can run from source code or choose the way 
-
-from docker. 
+There are two ways to run arXivER, you can run from source code or choose the way from docker. 
 
 ## Run from source code
 
