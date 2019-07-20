@@ -1,8 +1,9 @@
 from celery import Celery
 import arxiv
 import re
+import os
 
-db_address = '/Users/suicca/Workspace/celery_demo/paper.db'
+db_address = os.getenv('SQLITE_DB_ADDR','/Users/suicca/Workspace/celery_demo/paper.db')
 
 app = Celery('tasks', broker='sqla+sqlite:///{}'.format(db_address), backend='db+sqlite:///{}'.format(db_address))
 

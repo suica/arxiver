@@ -1,8 +1,14 @@
 # arXivER
 
-arXivER is a paper reading assistant which aims at enhancing the experience when using arXiv.
+arXivER is a paper reading assistant using `Flask` and `Vue.js`, which aims at enhancing the experience when using arXiv.
 
-## Run
+# Install
+
+There are two ways to run arXivER, you can run from source code or choose the way 
+
+from docker. 
+
+## Run from source code
 
 It is recommended that you create virtual environment and activate it first.
 
@@ -30,7 +36,7 @@ Now, arXivER is running on `http://0.0.0.0:5000`.
 
 ### Run Celery Worker
 
-`cd app/async_tasks`
+`cd async_tasks`
 
 Change `db_address` in `fetch_paper.py` into an absolute address on your computer.
 
@@ -40,9 +46,24 @@ Then run
 
 to execute the celery worker.
 
+## Run from docker
+
+The Dockerfile executes `install.sh` to initial database and install `python3.6`. 
+
+For convinience, we build image included both sqlite and python environment instead of using `docker-compose`.
+
+You can check details in `install.sh` and `Dockerfile`
+
+### How to run
+
+- build image `docker build -t arxiver:0.1`
+- run image `docker run -p 5000:5000 -t arxiver:0.1`
+
+Then arXiver is running on `http://127.0.0.1:5000`
+
 ## Test
 
-First, run the server first. And run `cd app/tests`.
+First, run the server first. And run `cd tests`.
 
 Then use `python tests.py` to run the unit tests.
 
