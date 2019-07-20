@@ -12,8 +12,9 @@ RUN echo 'alias python=python3' >> /root/.bashrc
 RUN /bin/bash -c "source /root/.bashrc"
 RUN python3 -m pip install -i  https://pypi.doubanio.com/simple/ --no-cache-dir -r requirements.txt
 
-ENTRYPOINT ["python3","app.py" ]
 CMD ["bash","async_tasks/www.sh"]
+ENTRYPOINT ["python3","app.py" ]
+
 
 EXPOSE 5000
 
