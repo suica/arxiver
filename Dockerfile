@@ -8,9 +8,8 @@ COPY . .
 # install requirements
 RUN ./install.sh 
 ENV SQLITE_DB_ADDR /data/mydb.db
-RUN echo 'alias python=python3' >> /root/.bashrc
-RUN /bin/bash -c "source /root/.bashrc"
-RUN python3 -m pip install -i  https://pypi.doubanio.com/simple/ --no-cache-dir -r requirements.txt
+RUN echo 'alias python=python3' >> /root/.bashrc && \
+    python3 -m pip install -i  https://pypi.doubanio.com/simple/ --no-cache-dir -r requirements.txt
 
 CMD ["./run.sh"]
 
